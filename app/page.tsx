@@ -53,7 +53,7 @@ export default function PredictorPage() {
         Pet: parseInt(data.Pet as string),
       }
 
-      const response = await fetch("/api/predict", {
+      const response = await fetch("https://matiasrodriguezc-mi-api-absentismo.hf.space/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

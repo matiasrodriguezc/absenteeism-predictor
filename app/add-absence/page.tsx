@@ -66,7 +66,7 @@ export default function AddAbsencePage() {
         throw new Error("Absence date is required.")
       }
       
-      const response = await fetch("/api/add_absence", {
+      const response = await fetch("https://matiasrodriguezc-mi-api-absentismo.hf.space/add_absence", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

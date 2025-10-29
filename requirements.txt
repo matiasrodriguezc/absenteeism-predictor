@@ -1,9 +1,0 @@
-fastapi
-uvicorn[standard]
-# Asegúrate de que 'pandas' NO esté en esta lista
-scikit-learn
-joblib
-sqlalchemy
-psycopg2-binary
-vercel-blob
-numpy
