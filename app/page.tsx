@@ -2,8 +2,8 @@
 
 import type React from "react"
 import { useState } from "react"
-import Link from 'next/link' // Import Link for navigation if needed later
-import { Github, Linkedin, Mail } from "lucide-react" // <-- 1. Import icons
+import Link from 'next/link'
+import { Github, Linkedin, Mail } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 
-// API Payload Interface (no translation needed)
+// API Payload Interface
 interface ApiPayload {
   Reason_Group: number
   Month_Value: number
@@ -31,7 +31,6 @@ export default function PredictorPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  // Your handleSubmit function remains the same
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
@@ -83,30 +82,30 @@ export default function PredictorPage() {
   }
 
   return (
-    // Add 'relative' to the main container to position children absolutely
-    <div className="container max-w-5xl py-8 px-4 md:py-12 md:px-6 relative"> 
-      
-      {/* --- 2. ADD SOCIAL LINKS CONTAINER --- */}
+    // Add 'relative' to the main container
+    <div className="container max-w-5xl py-8 px-4 md:py-12 md:px-6 relative">
+
+      {/* --- SOCIAL LINKS CONTAINER --- */}
       <div className="absolute top-4 right-4 md:top-6 md:right-6 flex space-x-4">
-        <a 
-          href="https://github.com/matiasrodriguezc" 
-          target="_blank" 
+        <a
+          href="https://github.com/matiasrodriguezc"
+          target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub Profile"
           className="text-muted-foreground hover:text-foreground transition-colors"
         >
           <Github size={24} />
         </a>
-        <a 
-          href="https://www.linkedin.com/in/matiasrodriguezc" 
-          target="_blank" 
+        <a
+          href="https://www.linkedin.com/in/matiasrodriguezc"
+          target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn Profile"
           className="text-muted-foreground hover:text-foreground transition-colors"
         >
           <Linkedin size={24} />
         </a>
-        <a 
+        <a
           href="mailto:matiasrodriguezc01@gmail.com"
           aria-label="Send Email"
           className="text-muted-foreground hover:text-foreground transition-colors"
@@ -126,7 +125,7 @@ export default function PredictorPage() {
         </p>
       </div>
 
-      {/* The rest of your Card and Form remains unchanged */}
+      {/* --- Card and Form --- */}
       <Card className="shadow-lg">
         <CardHeader>
           <CardTitle>Employee Data</CardTitle>
@@ -135,7 +134,7 @@ export default function PredictorPage() {
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid gap-4 md:grid-cols-2">
-              
+
               <div className="space-y-2">
                 <Label htmlFor="reason">Reason</Label>
                 <Select required name="Reason_Group">
@@ -232,7 +231,7 @@ export default function PredictorPage() {
                 </AlertDescription>
               </Alert>
             )}
-            
+
           </form>
         </CardContent>
       </Card>
