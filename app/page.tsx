@@ -2,6 +2,8 @@
 
 import type React from "react"
 import { useState } from "react"
+import Link from 'next/link' // Import Link for navigation if needed later
+import { Github, Linkedin, Mail } from "lucide-react" // <-- 1. Import icons
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
@@ -29,6 +31,7 @@ export default function PredictorPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
+  // Your handleSubmit function remains the same
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
@@ -53,6 +56,7 @@ export default function PredictorPage() {
         Pet: parseInt(data.Pet as string),
       }
 
+      // Ensure this URL points to your Hugging Face API
       const response = await fetch("https://matiasrodriguezc-mi-api-absentismo.hf.space/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -79,8 +83,41 @@ export default function PredictorPage() {
   }
 
   return (
-    <div className="container max-w-5xl py-8 px-4 md:py-12 md:px-6">
-      <div className="mb-8 space-y-2">
+    // Add 'relative' to the main container to position children absolutely
+    <div className="container max-w-5xl py-8 px-4 md:py-12 md:px-6 relative"> 
+      
+      {/* --- 2. ADD SOCIAL LINKS CONTAINER --- */}
+      <div className="absolute top-4 right-4 md:top-6 md:right-6 flex space-x-4">
+        <a 
+          href="https://github.com/matiasrodriguezc" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          aria-label="GitHub Profile"
+          className="text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <Github size={24} />
+        </a>
+        <a 
+          href="https://www.linkedin.com/in/matiasrodriguezc" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          aria-label="LinkedIn Profile"
+          className="text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <Linkedin size={24} />
+        </a>
+        <a 
+          href="mailto:matiasrodriguezc01@gmail.com"
+          aria-label="Send Email"
+          className="text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <Mail size={24} />
+        </a>
+      </div>
+      {/* --- END SOCIAL LINKS --- */}
+
+
+      <div className="mb-8 space-y-2 pt-12 md:pt-0"> {/* Added padding-top for mobile */}
         <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl text-balance">
           Absenteeism Prediction Calculator
         </h1>
@@ -89,6 +126,7 @@ export default function PredictorPage() {
         </p>
       </div>
 
+      {/* The rest of your Card and Form remains unchanged */}
       <Card className="shadow-lg">
         <CardHeader>
           <CardTitle>Employee Data</CardTitle>
@@ -139,12 +177,12 @@ export default function PredictorPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="transport">Transportation Expense ($ Monthly)</Label>
+                <Label htmlFor="transport">Transportation Expense ($)</Label>
                 <Input id="transport" name="Transportation_Expense" type="number" placeholder="0" min="0" required />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="distance">Distance to Work (KM)</Label>
+                <Label htmlFor="distance">Distance to Work (km)</Label>
                 <Input id="distance" name="Distance_to_Work" type="number" placeholder="0" min="0" required />
               </div>
 
@@ -154,7 +192,7 @@ export default function PredictorPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="workload">Workload (average in Hours)</Label>
+                <Label htmlFor="workload">Workload (average)</Label>
                 <Input id="workload" name="Daily_Work_Load_Average" type="number" step="0.01" placeholder="0.00" min="0" required />
               </div>
 
