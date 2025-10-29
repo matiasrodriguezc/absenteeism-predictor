@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import joblib
-import pandas as pd
+import numpy as np
 from vercel_blob import get
 from sqlalchemy import create_engine, text
 import os
@@ -97,9 +97,13 @@ async def predict(data: PredictionInput):
         del input_dict['Reason_Group']
         del input_dict['Education']
 
-        # 2. Crear DataFrame y escalar
-        input_df = pd.DataFrame([input_dict], columns=model_inputs_cols)
-        input_scaled = scaler.transform(input_df)
+        # Ahora (con Numpy):
+        # 1. Construir una lista simple en el orden correcto
+        input_list = [input_dict[col] for col in model_inputs_cols]
+        # 2. Convertir a un array 2D de Numpy (el scaler espera un array 2D)
+        input_array = np.array([input_list])
+        # 3. Escalar
+        input_scaled = scaler.transform(input_array)
 
         # 3. Predecir
         prediction = model.predict(input_scaled)
