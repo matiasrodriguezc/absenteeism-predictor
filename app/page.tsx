@@ -139,12 +139,12 @@ export default function PredictorPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="transport">Transportation Expense ($)</Label>
+                <Label htmlFor="transport">Transportation Expense ($ Monthly)</Label>
                 <Input id="transport" name="Transportation_Expense" type="number" placeholder="0" min="0" required />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="distance">Distance to Work (km)</Label>
+                <Label htmlFor="distance">Distance to Work (KM)</Label>
                 <Input id="distance" name="Distance_to_Work" type="number" placeholder="0" min="0" required />
               </div>
 
@@ -154,7 +154,7 @@ export default function PredictorPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="workload">Workload (average)</Label>
+                <Label htmlFor="workload">Workload (average in Hours)</Label>
                 <Input id="workload" name="Daily_Work_Load_Average" type="number" step="0.01" placeholder="0.00" min="0" required />
               </div>
 

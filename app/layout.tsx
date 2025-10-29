@@ -1,11 +1,15 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Manrope } from "next/font/google" // Asegúrate de que esté Manrope
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { Navigation } from "@/components/navigation"
 
-const inter = Inter({ subsets: ["latin"] })
+// Configura Manrope
+const manrope = Manrope({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+})
 
 export const metadata: Metadata = {
   title: "Absenteeism System",
@@ -20,9 +24,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`font-sans antialiased`}>
+      <body className={`${manrope.className} antialiased`}>
         <Navigation />
-        <main className="min-h-screen">{children}</main>
+        {/* AÑADE LAS CLASES DE CENTRADO AQUÍ */}
+        <main className="min-h-screen flex flex-col items-center">
+          {children}
+        </main>
         <Analytics />
       </body>
     </html>
